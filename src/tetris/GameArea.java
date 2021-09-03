@@ -165,6 +165,16 @@ public class GameArea extends JPanel {
         block.spawn(gridColumns);
     }
     
+    public void randomRotationSpawn() {
+        block = new TetrisBlock(new int[][]{ {1, 0}, {1, 0}, {1, 1} }, Color.blue);
+        block.randomRotationSpawn(gridColumns);
+    }
+    
+    public void randomRotationAndLocationSpawn() {
+        block = new TetrisBlock(new int[][]{ {1, 0}, {1, 0}, {1, 1} }, Color.blue);
+        block.randomRotationAndLocationSpawn(gridColumns);
+    }
+    
     private boolean checkBottom() {
         if (block.getBottom() == gridRows) {
             return false;

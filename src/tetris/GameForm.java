@@ -10,6 +10,7 @@ import javax.swing.KeyStroke;
 public class GameForm extends JFrame {
     
     private GameArea ga;
+    private String difficulty = "Easy";
     
     public GameForm() {
         initComponents();
@@ -68,6 +69,10 @@ public class GameForm extends JFrame {
     public void updateLevel(int level) {
         levelDisplay.setText("Level: " + level);
     }
+    
+    public String getDifficulty() {
+        return this.difficulty;
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -76,6 +81,8 @@ public class GameForm extends JFrame {
         gameAreaPlaceholder = new javax.swing.JPanel();
         scoreDisplay = new javax.swing.JLabel();
         levelDisplay = new javax.swing.JLabel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -99,6 +106,24 @@ public class GameForm extends JFrame {
         levelDisplay.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         levelDisplay.setText("Level: 1");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Easy", "Medium", "Hard" }));
+        jComboBox1.setKeySelectionManager(null);
+        jComboBox1.setLightWeightPopupEnabled(false);
+        jComboBox1.setRequestFocusEnabled(false);
+        jComboBox1.setVerifyInputWhenFocusTarget(false);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jComboBox1KeyPressed(evt);
+            }
+        });
+
+        jLabel1.setText("Difficulty");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -109,7 +134,9 @@ public class GameForm extends JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(scoreDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE)
-                    .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(levelDisplay, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -120,13 +147,33 @@ public class GameForm extends JFrame {
                         .addGap(28, 28, 28)
                         .addComponent(scoreDisplay)
                         .addGap(18, 18, 18)
-                        .addComponent(levelDisplay))
+                        .addComponent(levelDisplay)
+                        .addGap(37, 37, 37)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(gameAreaPlaceholder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+        if (jComboBox1.getSelectedItem().equals("Easy")) {
+            this.difficulty = "Easy";
+        } else if (jComboBox1.getSelectedItem().equals("Medium")) {
+            this.difficulty = "Medium";
+        } else if (jComboBox1.getSelectedItem().equals("Hard")) {
+            this.difficulty = "Hard";
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jComboBox1KeyPressed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -162,6 +209,8 @@ public class GameForm extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel gameAreaPlaceholder;
+    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel levelDisplay;
     private javax.swing.JLabel scoreDisplay;
     // End of variables declaration//GEN-END:variables

@@ -11,7 +11,10 @@ public class GameThread extends Thread {
     private int level = 1;
     private int scorePerLevel = 30;
     private int pause = 500;
-    private int speedUpPerLevel = 100;;
+    private int speedUpPerLevel = 50;
+    private String difficulty;
+    private int scoreAddition = 10;
+    private int scoreMultiplier = 15;
     
     public GameThread(GameArea ga, GameForm gf) {
         this.gf = gf;
@@ -21,7 +24,20 @@ public class GameThread extends Thread {
     @Override
     public void run() {
         while (true) {
-            ga.spawnBlock();
+            this.difficulty = gf.getDifficulty();
+            if (difficulty.equals("Easy")) {
+                scoreAddition = 10;
+                scoreMultiplier = 15;
+                ga.spawnBlock();
+            } else if (difficulty.equals("Medium")) {
+                scoreAddition = 15;
+                scoreMultiplier = 20;
+                ga.randomRotationSpawn();
+            } else if (difficulty.equals("Hard")) {
+                scoreAddition = 20;
+                scoreMultiplier = 25;
+                ga.randomRotationAndLocationSpawn();
+            }
             
             while (ga.moveBlockDown()) {
                 try {
@@ -41,9 +57,9 @@ public class GameThread extends Thread {
             // Update score based on number of lines cleared
             int linesCleared = ga.clearLines();
             if (linesCleared == 1) {
-                score += 10;   
+                score += scoreAddition;   
             } else if (linesCleared > 1) {
-                score += (linesCleared * 15);
+                score += (linesCleared * scoreMultiplier);
             }
             gf.updateScore(score);
             
@@ -55,8 +71,10 @@ public class GameThread extends Thread {
                 gf.updateLevel(level);
                 if (difference > 1) {
                     pause -= (speedUpPerLevel * difference);
+                    if (pause <= 100) pause = 100;
                 } else {
                     pause -= speedUpPerLevel;
+                    if (pause <= 100) pause = 100;
                 }
             }
         }
